@@ -13,18 +13,17 @@ class ContactManager {
     let contacts = JSON.parse(localStorage.getItem('contactsList'));
     if (contacts !== null) {
       console.log(contacts)
-      contacts.forEach((contact, index) => {
-        console.log(contact._name)
+      contacts.forEach((contact) => {
         this._setContactToArrayAndLS(contact);
       });
-      this._graphicManager.showOnTable(this._contacts);
+      this._graphicManager.showOnTable(this._contacts, this._deleteContact);
     }
   }
 
   addContact = (dataContact) => {
     if (this._ifDontExist(dataContact.telephone)) {
       this._setContactToArrayAndLS(dataContact);
-      this._graphicManager.showOnTable(this._contacts);
+      this._graphicManager.showOnTable(this._contacts, this._deleteContact);
     } else {
       alert('este telefono ya esta actualmente registrado');
     }
@@ -39,9 +38,11 @@ class ContactManager {
   }
 
   _deleteContact = (index) => {
+    console.log(index);
     this._contacts.splice(index, 1);
     this._dataContacts.splice(index, 1);
     localStorage.setItem('contactsList', JSON.stringify(this._dataContacts));
+    this._graphicManager.showOnTable(this._contacts, this._deleteContact);
   }
 
   _ifDontExist = (telephone) => {
