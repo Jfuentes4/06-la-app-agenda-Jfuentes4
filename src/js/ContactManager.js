@@ -1,8 +1,10 @@
 import Contact from './Contact.js';
+import GraphicManager from './GraphicManager.js'
 
 class ContactManager {
   constructor () {
     this._contacts = [];
+    this._graphicManager = new GraphicManager();
   }
 
   addContact = (dataContact) => {
@@ -10,6 +12,7 @@ class ContactManager {
       let contact = new Contact(dataContact);
       this._contacts.push(contact);
       localStorage.setItem('contactsList', JSON.stringify(this._contacts));
+      this._graphicManager.showOnTable(this._contacts);
       console.log(this._contacts)
     } else {
       alert('este telefono ya esta actualemnet registrado');

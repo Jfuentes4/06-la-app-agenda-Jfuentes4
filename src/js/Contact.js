@@ -16,8 +16,9 @@ class Contact {
   }
 
   getAge = () => {
-    let agems = new Date - this._birthday;
-    age = agems/(525600*60*1000);
+    let agems = Date.now() - this._birthday.getTime();
+    let ageDate = new Date(agems);
+    let age = Math.abs(ageDate.getUTCFullYear() - 1970);
     return age;
   }
 
