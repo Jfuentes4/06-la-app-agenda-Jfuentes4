@@ -26,7 +26,7 @@
 
 .btn-add-contact {
   border-radius: 40px;
-  width: 180px;
+  width: 170px;
   height: 48px;
   border-width: 0px;
   background: white;
@@ -45,6 +45,7 @@
 
 .container-fluid {
   padding: 0px;
+  min-width: 770px;
 }
 
 .list-item {
@@ -69,3 +70,17 @@
   font-size: 11pt;
   font-weight: 600;
 }
+
+.modal-dialog {
+  margin: auto !important;
+}
+
+.form-group {
+  margin-bottom: 1rem !important;
+}
+
+@media (max-width: 990px) {
+  .head-bar {
+    height: 8em;
+  }
+ }

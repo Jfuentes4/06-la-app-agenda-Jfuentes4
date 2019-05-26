@@ -9,22 +9,36 @@
   <body>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-2 head-bar">
+        <div class="col-lg-2 col-md-3 head-bar">
             <img src="../media/icons/icons8_Contacts_48px_2.png" class=" align-middle mx-2" alt="">
             <span class="align-middle title">Contactos</span>
         </div>
-        <div class="col-10 head-bar">
+        <div class="col-lg-10 col-md-9 head-bar">
           <div class="row justify-content-center align-items-center" style="height: 100%;">
-            <form class="f-inline form-inline  align-middle col-7">
+            <form class="f-inline form-inline align-middle col-lg-7 col-md-12">
               <input class="form-control w-75 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <form class="f-inline form-inline align-middle col-lg-5 col-md-12">
+              <div class="order-bar">
+                <span>ordenar por: </span>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="byName" name="orderBy" class="custom-control-input" checked>
+                  <label class="custom-control-label" for="byName">Alfabeticamente</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="byAge" name="orderBy" class="custom-control-input">
+                  <label class="custom-control-label" for="byAge">Por edad</label>
+                </div>
+              </div>
+            </form>
           </div>
+
         </div>
       </div>
       <div class="row">
-        <div class="col-2" id="side-bar">
-          <button type="button" class="btn-add-contact m-2" name="button">
+        <div class="col-lg-2 col-md-3" id="side-bar">
+          <button type="button" class="btn-add-contact m-2" name="button" data-toggle="modal" data-target="#addContact">
             <img src="../media/icons/icons8_Plus_Math_48px.png" class="icon-36" alt="">
             <span class="align-middle text-btn">Crear Contacto</span>
           </button>
@@ -37,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div class="col-10">
+        <div class="col-lg-10 col-md-9">
           <table class="table">
             <thead>
               <tr>
@@ -48,6 +62,46 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nuevo Contacto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="needs-validation">
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Nombre" required>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Email" required>
+              </div>
+              <div class="form-row form-group">
+                <div class="col-6">
+                  <input type="number" class="form-control" id="age" placeholder="Edad" required>
+                </div>
+                <div class="col-6">
+                  <input type="number" class="form-control" id="telephone" placeholder="No. Telefono" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="address" placeholder="Direccion" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary">Crear Contacto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!--bootstrap-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
