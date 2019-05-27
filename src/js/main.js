@@ -5,6 +5,8 @@ class Main {
     this._form = document.getElementById('newContactForm');
     this._contactManager = new ContactManager();
     document.getElementById('addContact').addEventListener('click', this._addContact);
+    document.getElementById('byName').addEventListener('click', () => { this._contactManager.refreshTable() });
+    document.getElementById('byAge').addEventListener('click', () => { this._contactManager.refreshTable() });
   }
 
   _addContact = () => {

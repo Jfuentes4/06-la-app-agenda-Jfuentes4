@@ -16,14 +16,16 @@ class ContactManager {
       contacts.forEach((contact) => {
         this._setContactToArrayAndLS(contact);
       });
-      this._graphicManager.showOnTable(this._contacts, this._deleteContact);
+      this.refreshTable();
     }
   }
 
   addContact = (dataContact) => {
     if (this._ifDontExist(dataContact.telephone)) {
       this._setContactToArrayAndLS(dataContact);
-      this._graphicManager.showOnTable(this._contacts, this._deleteContact);
+      this.refreshTable();
+      $('#addContactForm').modal('hide');
+      $('#addContactForm').reset();
     } else {
       alert('este telefono ya esta actualmente registrado');
     }
@@ -42,7 +44,39 @@ class ContactManager {
     this._contacts.splice(index, 1);
     this._dataContacts.splice(index, 1);
     localStorage.setItem('contactsList', JSON.stringify(this._dataContacts));
+    this.refreshTable();
+  }
+
+  refreshTable = () => {
+    console.log('refresh');
+    this._sortArray();
     this._graphicManager.showOnTable(this._contacts, this._deleteContact);
+  }
+
+  _sortArray = () => {
+    let orderByName = document.getElementById('byName');
+    let orderByAge = document.getElementById('byAge');
+    if (orderByName.checked) {
+      this._contacts.sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      });
+    } else if (orderByAge.checked) {
+      this._contacts.sort((a, b) => {
+        if (a.getAge() > b.getAge()) {
+          return 1;
+        }
+        if (a.getAge() < b.getAge()) {
+          return -1;
+        }
+        return 0;
+      });
+    }
   }
 
   _ifDontExist = (telephone) => {
